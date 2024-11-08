@@ -1,51 +1,27 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Mildew Detection in Cherry Leaves
 
-## Template Instructions
+The goal of this project is to visually differentiate between healthy cherry leaves and those affected by powdery mildew.
 
-Welcome,
+Live Link: responsive CHECK
 
-This is the Code Institute student template for the Cherry Leaves project option in Predictive Analytics. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
-
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
-
-## How to use this repo
-
-1. Use this template to create your GitHub project repo
-
-1. Log into your cloud IDE with your GitHub account.
-
-1. On your Dashboard, click on the New Workspace button
-
-1. Paste in the URL you copied from GitHub earlier
-
-1. Click Create
-
-1. Wait for the workspace to open. This can take a few minutes.
-
-1. Open a new terminal and `pip3 install -r requirements.txt`
-
-1. Open the jupyter_notebooks directory, and click on the notebook you want to open.
-
-1. Click the kernel button and choose Python Environments.
-
-Note that the kernel says Python 3.8.18 as it inherits from the workspace, so it will be Python-3.8.18 as installed by our template. To confirm this, you can use `! python --version` in a notebook code cell.
-
-## Cloud IDE Reminders
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, then you can create a new one with _Regenerate API Key_.
+## Table of Contents
+1. [Dataset Content](#dataset-content)
+2. [Business Requirements](#business-requirements)
+3. [Hypothesis and Validation](#hypothesis-and-how-to-validate)
+4. [The rationale to map the business requirements](#the-rationale-to-map-the-business-requirements)
+5. [ML Business Case](#ml-business-case)
+6. [Dashboard Design](#dashboard-design)
+7. [Deployment](#deployment)
+8. [Main Data Analysis and Machine Learning Libraries](#main-data-analysis-and-machine-learning-libraries)
+9. [Technologies and Languages Used](#technologies-and-languages-used)
+10. [Credits](#credits)
+11. [Acknowledgements](#acknowledgements)
 
 ## Dataset Content
 
-- The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves). We then created a fictitious user story where predictive analytics can be applied in a real project in the workplace.
-- The dataset contains +4 thousand images taken from the client's crop fields. The images show healthy cherry leaves and cherry leaves that have powdery mildew, a fungal disease that affects many plant species. The cherry plantation crop is one of the finest products in their portfolio, and the company is concerned about supplying the market with a compromised quality product.
+- The dataset used for this project is supplied by Code Institute and sourced from [Kaggle](https://www.kaggle.com/codeinstitute/cherry-leaves).
+- The dataset contains +4 thousand images taken from the client's crop fields.The images show healthy cherry leaves and cherry leaves that have powdery mildew, a fungal disease that affects many plant species. 
+The cherry plantation crop is one of the finest products in their portfolio, and the company is concerned about supplying the market with a compromised quality product.
 
 ## Business Requirements
 
@@ -53,65 +29,152 @@ The cherry plantation crop from Farmy & Foods is facing a challenge where their 
 
 To save time in this process, the IT team suggested an ML system that detects instantly, using a leaf tree image, if it is healthy or has powdery mildew. A similar manual process is in place for other crops for detecting pests, and if this initiative is successful, there is a realistic chance to replicate this project for all other crops. The dataset is a collection of cherry leaf images provided by Farmy & Foods, taken from their crops.
 
-- 1 - The client is interested in conducting a study to visually differentiate a healthy cherry leaf from one with powdery mildew.
-- 2 - The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew.
+1. The client is interested in conducting a study to visually differentiate a healthy cherry leaf from one with powdery mildew.
+2. The client is interested in predicting if a cherry leaf is healthy or contains powdery mildew.
+3. The client is interested in having the option to download a prediction report for the examined leaves.
+4. It was agreed with the client to attain an accuracy rate of 97%.
+
 
 ## Hypothesis and how to validate?
 
-- List here your project hypothesis(es) and how you envision validating it (them).
+Hypothesis: The machine learning model can accurately predict with the use of images whether a cherry leaf is healthy or contains powdery mildew based on its features
 
-## The rationale to map the business requirements to the Data Visualisations and ML tasks
+Validation: By following a systematic approach that includes data preparation, model training, and evaluation of healthy cherry leaves images and those that contain powdery mildew. 
 
-- List your business requirements and a rationale to map them to the Data Visualisations and ML tasks.
+Cherry leaves containing powdery mildew can be distinguished from healthy leaves by their appearance. This is verified by creating an average image study and an image montage to determine the differences in the appearance of both contaminated leaves and healthy leaves.
+Contaminated leaves and healthy leaves can be determined with a 97% accuracy, this will be verified by evaluating the model on the test dataset, which achieves 99% accuracy.
+
+## The rationale to map the business requirements
+
+### Business Requirement 1: Data Visualisation
+- Display the mean and standard deviation images for mildew-infected and uninfected cherry leaves.
+- Display the difference between average mildew-infected and uninfected leaves.
+- Display an image montage for either mildew-infected or uninfected leaves.
+### Business Requirement 2: Classification and Prediction
+- Build an ML model and use it to perform predictions based on whether leaves are infected or not, with an accuracy rating of at least 97%.
 
 ## ML Business Case
 
-- In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
+1. Business Objective
+    - Objective: By using an ML model we will solve the problem of differentiating between healthy and powdery mildew cherry leaves saving Farmy & Foods many hours of labour used for the current manual process.
+    - Business impact: To improve Farmy & Foods crop current health monitoring process, leading to reduced crop losses and maintaining the highest customer satisfaction.
+2. Business Problem
+    - Description & Challenges: Farmy & Foods is currently spending many hours of manual inspection is time-consuming and prone to errors when trying to identify cherry leaves affected with powdery mildew, leading to ineffective treatments and crop losses.
+    - Goals: To make use of an ML model to automatically and accurately identify cherry leaves affected with powdery mildew with at least 97% accuracy.
+3. Proposed Solution
+    - ML Approach: A Convolutional Neural Network (CNN) model will be developed to classify between healthy and affected with powdery mildew leaf images.
+    - Data Requirements: An image data set consisting of images of both healthy and affected with powdery mildew leaves.
+4. Business Value
+    - By using this model, we expect to quickly and accurately detect affected crops, allowing for early treatments, healthier plants and satisfied customers. Success will be measured by the model's accuracy and how well it works in detecting affected leaves. The benefits will include fewer crop losses and better quality harvests.
+5. Risk Mitigation
+    - Data Quality: Use strong methods to collect and prepare image data, including adding variety and checking quality, to ensure the dataset is diverse and of high-quality.
+    - Model Performance: The model might not reach the required accuracy, so it will be refined by using cross-validation and repeated testing.
+    - User: Users might resist the new system. To help, the dashboard withh be user-friendly and simple to use and understand, detailed guides, support, and explanations are available.
+    - Data privacy: NDAs and ethical guidelines will be followed to keep cherry leaf images and related data confidential and secure.
+6. Implementation Plan
+    - Data collection & processing 
+    - Model development & training 
+    - Model evaluation, testing, optimization and deployment
+
+[Top ⇧](#table-of-contents)
 
 ## Dashboard Design
 
-- List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items, that your dashboard library supports.
-- Finally, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project, you were confident you would use a given plot to display an insight, but later, you chose another plot type).
+### Page 1 - Project Summary
+
+Page includes some general background on the project, the client, and the reason for the project's inception. 
+- The business requirements of the project are stated, as well as details of the dataset.
+- The project hypothesis is outlined, linking the business needs with the requirements of the project
+- The conclusions of the project are stated, with success measured against the desired business outcomes.
+
+### Page 2 - Leaves Visualiser
+
+This page displays the image plots generated from the DataVisualisation notebook, which answer business requirement 1. Shown are:
+- Images displaying the mean and variance for healthy leaves(set 0), and unhealthy leaves(set 1)
+- An image showing the visual difference between an average healthy and unhealthy leaf
+- An image montage creator, with the option to generate an image montage of either healthy or unhealthy leaves from the dataset
+
+### Page 3 - Mildew Detection
+
+The mildew detection page fulfils business requirement 2, providing the ability for a user to upload images for predicting if mildew is present
+- Includes link to dataset for prediction use
+- Image upload widget, with the ability to upload multiple image files. These are then standardised and fed into the ML model.
+- The images are displayed, with their infection status prediction and probability
+- A button allows the user to download a report with prediction details of the images they have uploaded 
+
+### Page 4 - ML Performance
+
+This page summarises the performance metrics of the machine learning model used in the project. Show are:
+- A bar graph summarising the data split between the different sets, per label
+- Line graphs displaying the accuracy and loss trends for the model
+- A summary of the generalised performance of the model on the test data set 
 
 ## Unfixed Bugs
 
-- You will need to mention unfixed bugs and why they were unfixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable for consideration, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed.
+- No unfixed bugs were detected 
 
 ## Deployment
 
+### Cloning the [GitHub](https://github.com/) repository
+
+Cloning a repository will download a full copy of the data to your computer. This is useful when larger commits need to be pushed, adding or removing files and fixing merge conflicts.
+
+1. Login to GitHub
+2. Click the repository you wish to clone (Top left corner)
+3. Click 'Code' which is shown above the list of files in the repository
+4. Click the 'Local' tab, copy the HTTPS URL
+5. Open Gitpod Workspaces, click 'New Workspace'
+6. Paste the copied URL into the space given under 'Repository URL'
+7. Click 'Continue' and the local clone will be created.
+
+### Forking the [GitHub](https://github.com/) repository
+
+Forking a GitHub repository will allow you to make a copy of the repository, changes can then be made that will not affect the original repository. This is useful for proposed changes, ideas, fixes to an original repository.
+
+1. Login to GitHub
+2. Click the repository you wish to fork (Top left corner)
+3. Click the 'Fork' drop-down in the top right-hand corner
+4. Then click 'Create a new fork' you will now have a copy to work on.
+
 ### Heroku
 
-- The App live link is: `https://YOUR_APP_NAME.herokuapp.com/`
-- Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
+- The App live link is: 
+
 - The project was deployed to Heroku using the following steps.
+1. Login to Heroku
+2. On the Heroku dashboard click on 'New'
+3. Select 'Create New App'
+4. Add an app name and select your region
+5. Click 'Create App'
+6. At the top of the page again, click 'Deploy'
+7. Click on 'Github' as your deployment method
+8. Search the relevant repo and link these
+9. Once linked, select 'Automatic deploys from' or 'Manual Deploy'
+10. The deployment process should happen smoothly if all deployment files are fully functional. Click the button 'Open App' on the top of the page to access your App.
+11. If the slug size is too large, then add large files not required for the app to the .slugignore file.
 
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
-6. If the slug size is too large, then add large files not required for the app to the .slugignore file.
+## Technologies and Languages Used
 
-## Main Data Analysis and Machine Learning Libraries
+- [Git & GitHub](https://github.com/)
+    - Version control and storage code
+- [GitPod](https://www.gitpod.io/) 
+    - Used as the development environment
+- [Heroku](https://www.heroku.com/) 
+    - Used to deploy the site (Cloud based)
+- [Am I Responsive](https://ui.dev/amiresponsive) 
+    - Used to for the image across devices in the README.md
+- [Chat GPT](https://chatgpt.com/) 
+    - Used to better word some of my descriptions and general assistance & guidance
 
-- Here, you should list the libraries used in the project and provide an example(s) of how you used these libraries.
 
 ## Credits
 
-- In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism.
-- You can break the credits section up into Content and Media, depending on what you have included in your project.
+- Code Institute - Walkthrough Project for steps, guidance and following along to get this far in my project 5:
+  - [Code Inst - Malaria Detector](https://shorturl.at/xFj5G)
+- Tutor Support for assistance & guidance:
+  - [Tutor Assistance](https://learn.codeinstitute.net/ci_support/diplomainfullstacksoftwarecommoncurriculum/tutor)
 
-### Content
+## Acknowledgements
 
-- The text for the Home page was taken from Wikipedia Article A.
-- Instructions on how to implement form validation on the Sign-Up page were taken from [Specific YouTube Tutorial](https://www.youtube.com/).
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/).
-
-### Media
-
-- The photos used on the home and sign-up page are from This Open-Source site.
-- The images used for the gallery page were taken from this other open-source site.
-
-## Acknowledgements (optional)
-
-- Thank the people who provided support throughout this project.
+MY SISTER
+[Top ⇧](#table-of-contents)
