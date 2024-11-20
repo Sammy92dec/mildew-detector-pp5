@@ -7,5 +7,7 @@ inputs/cherry_leaves_dataset/cherry-leaves/train/powdery_mildew
 kaggle.json
 .gitpod.dockerfile
 .gitpod.yml
-app_pages/__pycache__/*
-trial_and_error/*
+app_pages/__pycache__/
+*.ipynb
+readme_images/*
+outputs/v1
