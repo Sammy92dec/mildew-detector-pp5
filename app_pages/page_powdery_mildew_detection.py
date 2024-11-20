@@ -24,7 +24,7 @@ def page_powdery_mildew_detection_body():
     st.write("---")
 
     imgs_buffer = st.file_uploader('Upload an image/s of a cherry leaf',
-                                        type='jpeg',accept_multiple_files=True)
+                                        type='jpg',accept_multiple_files=True)
    
     if imgs_buffer is not None:
         df_report = pd.DataFrame([])
